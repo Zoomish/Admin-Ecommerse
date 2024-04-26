@@ -28,17 +28,16 @@ const Autorization: FC<IAutorization> = ({ setIsLoggedIn, t, setToken }) => {
           console.log(res)
 
           if (res.message === 'valid') {
-            if (window.location.href.includes('http://localhost:3000')) {
               setIsLoggedIn(true)
               if (storedInitialRoute) {
                 if (storedInitialRoute === '/') {
-                  history.push('/super_admin/Items')
+                  history.push('/super_admin/items')
                 } else {
                   history.push(storedInitialRoute)
                   localStorage.removeItem('initialRoute')
                 }
               } else {
-                history.push('/super_admin/Items')
+                history.push('/super_admin/items')
               }
             } else {
               setIsLoggedIn(true)
@@ -46,9 +45,8 @@ const Autorization: FC<IAutorization> = ({ setIsLoggedIn, t, setToken }) => {
                 history.push(storedInitialRoute)
                 localStorage.removeItem('initialRoute')
               } else {
-                history.push('/super_admin/Items')
+                history.push('/super_admin/items')
               }
-            }
           }
         })
         .catch((e) => {
