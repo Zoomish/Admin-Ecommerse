@@ -3,12 +3,11 @@
 import { BASE_URL } from '../const'
 import { handleResponse } from '../helpers'
 
-export const validateToken = async (pathRest: string, token: string) => {
+export const validateToken = async (token: string) => {
   return await fetch(`${BASE_URL}/auth/validate/token`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      Referer: `${pathRest}`,
       Authorization: `Bearer ${token}`
     }
   }).then(async (res) => await handleResponse(res))

@@ -18,15 +18,12 @@ const Autorization: FC<IAutorization> = ({ setIsLoggedIn, t, setToken }) => {
   const storedInitialRoute = localStorage.getItem('initialRoute')
   const { openNotification } = useContext(NotificationContext)
   const history = useHistory()
-  const pathRest = window.location.href
-    .replace(/http:\/\/|https:\/\//, '')
-    .split(/\./)[0]
   useEffect(() => {
     const tokenDetailsString = localStorage.getItem('token')
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (tokenDetailsString) {
       validateTokenApi
-        .validateToken(pathRest, tokenDetailsString)
+        .validateToken(tokenDetailsString)
         .then((res) => {
           if (res.message === 'valid') {
             if (window.location.href.includes('http://localhost:3000')) {
