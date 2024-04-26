@@ -29,7 +29,7 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
 
   React.useEffect(() => {
     restaurantAPI
-      .getRestaurants(token)
+      .getItems(token)
       .then((res) => {
         const nameRests: { [key: string]: string } = {}
         res.rests.forEach((rest: TRest) => {
