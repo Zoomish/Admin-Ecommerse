@@ -16,7 +16,7 @@ interface IRest {
   pathRest: string
 }
 
-const Restaurant: FC<IRest> = ({ token, t, pathRest, language }) => {
+const item: FC<IRest> = ({ token, t, pathRest, language }) => {
   const { openNotification } = useContext(NotificationContext)
   const pathname = useLocation().pathname
   const match = useRouteMatch(pathname)
@@ -113,4 +113,4 @@ const Restaurant: FC<IRest> = ({ token, t, pathRest, language }) => {
     </>
   )
 }
-export default Restaurant
+export default item
