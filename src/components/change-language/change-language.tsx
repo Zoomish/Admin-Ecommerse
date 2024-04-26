@@ -1,9 +1,6 @@
 import React, { FC } from 'react'
-import { TRest } from '../../utils/typesFromBackend'
 
 interface IChangeLanguage {
-  rest: TRest
-  t: (arg0: string) => string
   changeLanguage: (arg0: string) => void
 }
 const ChangeLanguage: FC<IChangeLanguage> = ({ changeLanguage }) => {
