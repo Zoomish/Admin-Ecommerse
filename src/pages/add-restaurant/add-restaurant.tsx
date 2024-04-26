@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
-import * as restaurantAPI from '../../utils/api/restaurant-api'
+import * as restaurantAPI from '../../utils/api/items-api'
 import { TRest, ETariff } from '../../utils/typesFromBackend'
 import { Form, Input, Button, Select, Upload, message, Modal } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'

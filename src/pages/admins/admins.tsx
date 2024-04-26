@@ -5,7 +5,7 @@ import { ECountry, TAdmin, TRest } from '../../utils/typesFromBackend'
 import * as adminAPI from '../../utils/api/admin-api'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { NotificationContext } from '../../components/notification-provider/notification-provider'
-import * as restaurantAPI from '../../utils/api/restaurant-api'
+import * as restaurantAPI from '../../utils/api/items-api'
 
 interface ILevelsAccess {
   text: string

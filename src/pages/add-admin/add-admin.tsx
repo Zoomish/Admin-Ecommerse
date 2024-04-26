@@ -4,7 +4,7 @@ import { ELevelAccess, TAdmin, TRest } from '../../utils/typesFromBackend'
 import { Form, Input, Button, Select, Modal } from 'antd'
 import { NotificationContext } from '../../components/notification-provider/notification-provider'
 import * as adminAPI from '../../utils/api/admin-api'
-import * as restaurantAPI from '../../utils/api/restaurant-api'
+import * as restaurantAPI from '../../utils/api/items-api'
 
 interface IAddAdmin {
   pathRest: string

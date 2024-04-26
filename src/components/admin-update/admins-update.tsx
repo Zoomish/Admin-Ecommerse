@@ -4,7 +4,7 @@ import { useHistory, useLocation, useRouteMatch } from 'react-router-dom'
 import { ELevelAccess, TAdmin, TRest } from '../../utils/typesFromBackend'
 import * as adminAPI from '../../utils/api/admin-api'
 import { NotificationContext } from '../notification-provider/notification-provider'
-import * as restaurantAPI from '../../utils/api/restaurant-api'
+import * as restaurantAPI from '../../utils/api/items-api'
 
 interface IGroupModifiersForDish {
   pathRest: string
