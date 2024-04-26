@@ -64,20 +64,6 @@ export const importMenu = async (
     body: data
   }).then(async (res) => await handleResponse(res))
 }
-
-export const createRestaurantWithAdmin = async (token: string, data: any) => {
-  return await fetch(`${BASE_URL}/rest/create-rest-and-admin`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
-    },
-    body: JSON.stringify({
-      ...data
-    })
-  }).then(async (res) => await handleResponse(res))
-}
-
 export const deleteRestaurant = async (token: string, id: string) => {
   return await fetch(`${BASE_URL}/rest/${id}`, {
     method: 'DELETE',
