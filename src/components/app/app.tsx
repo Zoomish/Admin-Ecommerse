@@ -1,0 +1,43 @@
+import React, { FC, useEffect, useState } from 'react'
+import './App.css'
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom'
+import Main from '../main/main'
+
+const App: FC = () => {
+  const [token, setToken] = useState<string>('')
+  // const { pathRest } = useParams<{ pathRest: string }>()
+  const pathRest = 'super_admin'
+  const history = useHistory()
+  if (
+    history.location.pathname !== '/super_admin' &&
+    history.location.pathname !== '/super_admin/autorization'
+  ) {
+    localStorage.setItem('initialRoute', history.location.pathname)
+  }
+
+  useEffect(() => {
+    // @ts-expect-error
+    setToken(localStorage.getItem('token'))
+  }, [token])
+
+  return (
+    <div className='App'>
+      <Switch>
+        <Route path='/' exact={true}>
+          <Redirect to={{ pathname: `/${pathRest}/autorization` }} />
+        </Route>
+        <Route path={`/${pathRest}/autorization`} exact={true}>
+          <Main token={token} pathRest={pathRest} setToken={setToken} />
+        </Route>
+        <Route path={'/super_admin'} exact>
+          <Redirect to={`/${pathRest}/autorization`} />
+        </Route>
+        <Route path={'*'} exact>
+          <Redirect to={`/${pathRest}/autorization`} />
+        </Route>
+      </Switch>
+    </div>
+  )
+}
+
+export default App

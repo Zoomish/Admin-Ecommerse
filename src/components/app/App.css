@@ -1,0 +1,7 @@
+.App {
+  background: #fff;
+}
+:where(.css-dev-only-do-not-override-1ij74fp).ant-upload-wrapper .ant-upload-drag {
+  height: auto !important;
+  margin-top: 1.5rem;
+}
