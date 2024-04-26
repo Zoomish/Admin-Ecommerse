@@ -25,6 +25,8 @@ const Autorization: FC<IAutorization> = ({ setIsLoggedIn, t, setToken }) => {
       validateTokenApi
         .validateToken(tokenDetailsString)
         .then((res) => {
+          console.log(res)
+
           if (res.message === 'valid') {
             if (window.location.href.includes('http://localhost:3000')) {
               setIsLoggedIn(true)
@@ -49,7 +51,9 @@ const Autorization: FC<IAutorization> = ({ setIsLoggedIn, t, setToken }) => {
             }
           }
         })
-        .catch((e) => openNotification(e, 'topRight'))
+        .catch((e) => {
+          openNotification(e, 'topRight')
+        })
     }
   }, [])
 
