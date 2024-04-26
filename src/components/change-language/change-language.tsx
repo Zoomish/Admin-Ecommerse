@@ -6,7 +6,7 @@ interface IChangeLanguage {
   t: (arg0: string) => string
   changeLanguage: (arg0: string) => void
 }
-const ChangeLanguage: FC<IChangeLanguage> = ({ rest, t, changeLanguage }) => {
+const ChangeLanguage: FC<IChangeLanguage> = ({ changeLanguage }) => {
   const [selectedOption, setSelectedOption] = React.useState('')
   const arrayLanguage = ['RU', 'EN', 'KZ']
 
