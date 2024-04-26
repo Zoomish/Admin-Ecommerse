@@ -1,7 +1,5 @@
-import React, { FC, useContext } from 'react'
+import React, { FC } from 'react'
 import { ECountry } from '../../utils/typesFromBackend'
-import * as countryApi from '../../utils/api/country-api'
-import { NotificationContext } from '../../components/notification-provider/notification-provider'
 
 interface IChangeLanguage {
   t: (arg0: string) => string
@@ -11,16 +9,8 @@ const ChoiseLanguage: FC<IChangeLanguage> = ({
   t,
   changeLanguage
 }) => {
-  const { openNotification } = useContext(NotificationContext)
   const [selectedOption, setSelectedOption] = React.useState('')
   const restData = Object.keys(ECountry)
-
-  React.useEffect(() => {
-    countryApi
-      .getListCountries('632c1700641f6cf6642b2ba9')
-      .catch((e) => openNotification(e, 'topRight'))
-  }, [])
-
   React.useEffect(() => {
     const storedLanguage = localStorage.getItem('language')
     if (

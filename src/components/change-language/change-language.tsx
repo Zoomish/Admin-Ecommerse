@@ -1,7 +1,5 @@
-import React, { FC, useContext } from 'react'
+import React, { FC } from 'react'
 import { TRest } from '../../utils/typesFromBackend'
-import * as countryApi from '../../utils/api/country-api'
-import { NotificationContext } from '../../components/notification-provider/notification-provider'
 
 interface IChangeLanguage {
   rest: TRest
@@ -9,15 +7,8 @@ interface IChangeLanguage {
   changeLanguage: (arg0: string) => void
 }
 const ChangeLanguage: FC<IChangeLanguage> = ({ rest, t, changeLanguage }) => {
-  const { openNotification } = useContext(NotificationContext)
   const [selectedOption, setSelectedOption] = React.useState('')
   const arrayLanguage = ['RU', 'EN', 'KZ']
-
-  React.useEffect(() => {
-    countryApi
-      .getListCountries(rest._id)
-      .catch((e) => openNotification(e, 'topRight'))
-  }, [])
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const onFinish = (values: any) => {
