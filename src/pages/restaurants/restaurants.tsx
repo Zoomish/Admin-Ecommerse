@@ -1,7 +1,7 @@
 import { Table } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import React, { FC, useContext } from 'react'
-import { ECountry, TRest } from '../../utils/typesFromBackend'
+import { ECountry, TDish } from '../../utils/typesFromBackend'
 import * as restaurantAPI from '../../utils/api/restaurant-api'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import imageNoPhoto from '../../assets/images/no_photo.png'
@@ -23,7 +23,7 @@ interface IMenu {
 const Restaurants: FC<IMenu> = ({ token, pathRest, t }) => {
   const { openNotification } = useContext(NotificationContext)
 
-  const [data, setData] = React.useState<TRest[]>([])
+  const [data, setData] = React.useState<TDish[]>([])
   const [nameTariffs, setnameTariffs] = React.useState<InameTariffs[]>([])
   const location = useLocation()
 
@@ -34,10 +34,10 @@ const Restaurants: FC<IMenu> = ({ token, pathRest, t }) => {
         setData(res)
         const objectNames: { [key: string]: boolean } = {}
         const resultArraynameTariffs: InameTariffs[] = []
-        res.forEach((dish: TRest) => {
-          if (!objectNames[dish.category as string]) {
-            objectNames[dish.tariff as string] = true
-          }
+        res.forEach((dish: TDish) => {
+          // if (!objectNames[dish.category as TCategory]) {
+          //   objectNames[dish.price as string] = true
+          // }
         })
         for (const key of Object.keys(objectNames)) {
           resultArraynameTariffs.push({ text: key, value: key })
@@ -49,7 +49,7 @@ const Restaurants: FC<IMenu> = ({ token, pathRest, t }) => {
     window.localStorage.setItem('initialRoute', currentPath)
   }, [])
 
-  const columns: ColumnsType<TRest> = [
+  const columns: ColumnsType<TDish> = [
     {
       title: `${t('image')}`,
       dataIndex: 'logoPath',
@@ -75,27 +75,27 @@ const Restaurants: FC<IMenu> = ({ token, pathRest, t }) => {
     },
     {
       title: `${t('name')}`,
-      dataIndex: 'titleRest',
-      key: 'titleRest',
-      render: (titleRest, rest) => (
-        <Link to={`/${pathRest}/restaurant/:${rest._id}`}>{titleRest}</Link>
+      dataIndex: 'title',
+      key: 'title',
+      render: (title, rest) => (
+        <Link to={`/${pathRest}/restaurant/:${rest.id}`}>{title}</Link>
       ),
       sorter: (a, b) => {
-        if (a.titleRest !== undefined && b.titleRest !== undefined) {
-          return a.titleRest.localeCompare(b.titleRest)
+        if (a.title !== undefined && b.title !== undefined) {
+          return a.title.localeCompare(b.title)
         }
         return 0
       }
     },
     {
-      title: `${t('tariff')}`,
-      dataIndex: 'tariff',
-      key: 'tariff',
-      render: (tariff) => <p>{tariff}</p>,
-      sorter: (a, b) => (a.tariff as string).localeCompare(b.tariff as string),
+      title: `${t('price')}`,
+      dataIndex: 'price',
+      key: 'price',
+      render: (price) => <p>{price}</p>,
+      sorter: (a, b) => a.price - b.price,
       filters: [...nameTariffs],
       onFilter: (value: string | number | boolean, record) =>
-        record.tariff === value
+        record.price === value
     }
   ]
   return (

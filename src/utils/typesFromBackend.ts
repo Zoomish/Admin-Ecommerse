@@ -249,10 +249,11 @@ export interface TCategory {
 }
 export interface TDish {
   id: string
-  title: IMultiLang
-  description: IMultiLang
+  title: string
+  description: string
   image: string
   price: number
+  category: TCategory
 }
 export interface TSubCategories {
   subcategories: TSubCategories[] | []
