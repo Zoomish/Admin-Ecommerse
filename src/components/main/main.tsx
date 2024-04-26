@@ -16,7 +16,7 @@ import ProtectedRoute from '../protected-route/protected-route'
 import Sidebar from '../sidebar/sidebar'
 import Items from '../../pages/items/items'
 import AddRestaurants from '../../pages/add-restaurant/add-restaurant'
-import Restaurant from '../../pages/item/item'
+import Item from '../../pages/item/item'
 import Admins from '../../pages/admins/admins'
 import AddAdmin from '../../pages/add-admin/add-admin'
 import Admin from '../../pages/admin/admin'
@@ -179,7 +179,7 @@ const Main: FC<IMain> = ({ token, pathRest, setToken }) => {
                   isLoggedIn={isLoggedIn}
                   pathRest={pathRest}
                 >
-                  <Restaurant
+                  <Item
                     token={token}
                     pathRest={pathRest}
                     t={t}
