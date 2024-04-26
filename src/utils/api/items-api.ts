@@ -49,21 +49,6 @@ export const createRestaurant = async (token: string, data: any) => {
   }).then(async (res) => await handleResponse(res))
 }
 
-export const importMenu = async (
-  token: string,
-  data: any,
-  pathRest: string
-) => {
-  return await fetch(`${BASE_URL}/rest/importMenuData`, {
-    method: 'POST',
-    referrerPolicy: 'no-referrer-when-downgrade',
-    referrer: `${document.location.origin}/${pathRest}`,
-    headers: {
-      Authorization: `Bearer ${token}`
-    },
-    body: data
-  }).then(async (res) => await handleResponse(res))
-}
 export const deleteRestaurant = async (token: string, id: string) => {
   return await fetch(`${BASE_URL}/rest/${id}`, {
     method: 'DELETE',
