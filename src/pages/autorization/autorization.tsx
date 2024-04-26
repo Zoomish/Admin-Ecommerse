@@ -62,7 +62,7 @@ const Autorization: FC<IAutorization> = ({ setIsLoggedIn, t, setToken }) => {
     autorizationApi
       .autorization(values)
       .then((res) => {
-        localStorage.setItem('token', res.authToken)
+        localStorage.setItem('token', res.token)
         setToken(res.authToken)
         setIsLoggedIn(true)
         if (storedInitialRoute) {
