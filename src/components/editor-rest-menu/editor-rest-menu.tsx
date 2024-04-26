@@ -22,7 +22,7 @@ const EditorRestMenu: FC<IEditorRest> = ({ token, pathRest, t }) => {
   const match = useRouteMatch(pathname)
   const restId = Object.keys(match?.params as string)[0]
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-  const [rest, setDish] = React.useState<TRest>({} as TRest)
+  const [, setDish] = React.useState<TRest>({} as TRest)
   const [isModalVisible, setIsModalVisible] = React.useState(false)
 
   React.useEffect(() => {
@@ -43,16 +43,6 @@ const EditorRestMenu: FC<IEditorRest> = ({ token, pathRest, t }) => {
     multiple: false,
     maxCount: 1,
     showUploadList: false,
-    customRequest: async ({ file }: { file: any }) => {
-      const formData = new FormData()
-      formData.append('file', file)
-      restaurantAPI
-        .importMenu(token, formData, rest.pathRest)
-        .then((res) => {
-          openNotification(t('menu-uploaded'), 'topRight')
-        })
-        .catch((e) => openNotification(e, 'topRight'))
-    },
     accept: '.xls, .xlsx'
   }
 
