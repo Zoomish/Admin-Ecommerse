@@ -16,7 +16,7 @@ interface IRest {
   pathRest: string
 }
 
-const item: FC<IRest> = ({ token, t, pathRest, language }) => {
+const Item: FC<IRest> = ({ token, t, pathRest, language }) => {
   const { openNotification } = useContext(NotificationContext)
   const pathname = useLocation().pathname
   const match = useRouteMatch(pathname)
@@ -113,4 +113,4 @@ const item: FC<IRest> = ({ token, t, pathRest, language }) => {
     </>
   )
 }
-export default item
+export default Item
