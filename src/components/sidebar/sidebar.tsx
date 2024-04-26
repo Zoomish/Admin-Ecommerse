@@ -22,7 +22,7 @@ const Sidebar: FC<ISidebar> = ({ setIsLoggedIn, pathRest, t }) => {
     history.push(`/${pathRest}/list`)
   }
   const handleRestaurantsClick = (): void => {
-    history.push(`/${pathRest}/restaurants`)
+    history.push(`/${pathRest}/items`)
   }
   const handleAdminsClick = (): void => {
     history.push(`/${pathRest}/admins`)
