@@ -14,7 +14,7 @@ import i18n from '../i18n/i18n'
 import ChoiseLanguage from '../choise-language/choise-language'
 import ProtectedRoute from '../protected-route/protected-route'
 import Sidebar from '../sidebar/sidebar'
-import Restaurants from '../../pages/items/items'
+import Items from '../../pages/items/items'
 import AddRestaurants from '../../pages/add-restaurant/add-restaurant'
 import Restaurant from '../../pages/restaurant/restaurant'
 import Admins from '../../pages/admins/admins'
@@ -161,12 +161,12 @@ const Main: FC<IMain> = ({ token, pathRest, setToken }) => {
                   <AddAdmin token={token} pathRest={pathRest} t={t} />
                 </ProtectedRoute>
                 <ProtectedRoute
-                  path={`/:${pathRest}/restaurants`}
+                  path={`/:${pathRest}/items`}
                   exact
                   isLoggedIn={isLoggedIn}
                   pathRest={pathRest}
                 >
-                  <Restaurants
+                  <Items
                     token={token}
                     pathRest={pathRest}
                     t={t}
@@ -174,7 +174,7 @@ const Main: FC<IMain> = ({ token, pathRest, setToken }) => {
                   />
                 </ProtectedRoute>
                 <ProtectedRoute
-                  path={`/:${pathRest}/restaurant/:restaurantId`}
+                  path={`/:${pathRest}/item/:itemId`}
                   exact
                   isLoggedIn={isLoggedIn}
                   pathRest={pathRest}
