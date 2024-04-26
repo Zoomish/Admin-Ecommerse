@@ -6,11 +6,11 @@ import Main from '../main/main'
 const App: FC = () => {
   const [token, setToken] = useState<string>('')
   // const { pathRest } = useParams<{ pathRest: string }>()
-  const pathRest = 'super_admin'
+  const pathRest = 'admin'
   const history = useHistory()
   if (
-    history.location.pathname !== '/super_admin' &&
-    history.location.pathname !== '/super_admin/autorization'
+    history.location.pathname !== '/admin' &&
+    history.location.pathname !== '/admin/autorization'
   ) {
     localStorage.setItem('initialRoute', history.location.pathname)
   }
@@ -29,7 +29,7 @@ const App: FC = () => {
         <Route path={`/${pathRest}/autorization`} exact={true}>
           <Main token={token} pathRest={pathRest} setToken={setToken} />
         </Route>
-        <Route path={'/super_admin'} exact>
+        <Route path={'/admin'} exact>
           <Redirect to={`/${pathRest}/autorization`} />
         </Route>
         <Route path={'*'} exact>

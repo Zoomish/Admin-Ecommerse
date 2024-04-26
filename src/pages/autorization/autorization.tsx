@@ -25,19 +25,17 @@ const Autorization: FC<IAutorization> = ({ setIsLoggedIn, t, setToken }) => {
       validateTokenApi
         .validateToken(tokenDetailsString)
         .then((res) => {
-          console.log(res)
-
           if (res.message === 'valid') {
               setIsLoggedIn(true)
               if (storedInitialRoute) {
                 if (storedInitialRoute === '/') {
-                  history.push('/super_admin/items')
+                  history.push('/admin/items')
                 } else {
                   history.push(storedInitialRoute)
                   localStorage.removeItem('initialRoute')
                 }
               } else {
-                history.push('/super_admin/items')
+                history.push('/admin/items')
               }
             } else {
               setIsLoggedIn(true)
@@ -45,7 +43,7 @@ const Autorization: FC<IAutorization> = ({ setIsLoggedIn, t, setToken }) => {
                 history.push(storedInitialRoute)
                 localStorage.removeItem('initialRoute')
               } else {
-                history.push('/super_admin/items')
+                history.push('/admin/items')
               }
           }
         })
@@ -56,8 +54,6 @@ const Autorization: FC<IAutorization> = ({ setIsLoggedIn, t, setToken }) => {
   }, [])
 
   const onFinish = (values: any) => {
-    console.log(values)
-
     autorizationApi
       .autorization(values)
       .then((res) => {
@@ -68,7 +64,7 @@ const Autorization: FC<IAutorization> = ({ setIsLoggedIn, t, setToken }) => {
           history.push(storedInitialRoute)
           localStorage.removeItem('initialRoute')
         } else {
-          history.push('/super_admin/Items')
+          history.push('/admin/items')
         }
       })
       .catch((e) => openNotification(e, 'topRight'))
