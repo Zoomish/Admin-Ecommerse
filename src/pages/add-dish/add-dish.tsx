@@ -127,6 +127,7 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
     formData.append('title', values.title)
     formData.append('categoryId', values.categoryId)
     formData.append('description', values.description)
+    formData.append('price', values.price)
     restaurantAPI
       .createDish(token, formData)
       .then((res: TRest) => {
@@ -183,6 +184,9 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
           name='description'
         >
           <Input onChange={handleChangePath} />
+        </Form.Item>
+        <Form.Item label={t('price')} rules={[{ required: true }]} name='price'>
+          <Input onChange={handleChangeTitle} />
         </Form.Item>
         <Form.Item
           label={t('image')}

@@ -246,7 +246,7 @@ export interface TDish {
   id: string
   title: string
   description: string
-  image: string
+  image: any
   price: number
   categoryId: number
   category: TCategory
