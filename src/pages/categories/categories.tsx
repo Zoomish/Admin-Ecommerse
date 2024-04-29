@@ -31,7 +31,6 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
       .getAllCategories()
       .then((res) => {
         setData(res)
-        console.log(data)
         const levelsAccessNames: { [key: string]: boolean } = {}
         const resultArrayLevels: ILevelsAccess[] = []
         for (const key of Object.keys(levelsAccessNames)) {
