@@ -132,7 +132,7 @@ const Main: FC<IMain> = ({ token, pathRest, setToken }) => {
                   />
                 </Route>
                 <ProtectedRoute
-                  path={`/:${pathRest}/admins`}
+                  path={`/:${pathRest}/categories`}
                   exact
                   isLoggedIn={isLoggedIn}
                   pathRest={pathRest}
@@ -145,7 +145,7 @@ const Main: FC<IMain> = ({ token, pathRest, setToken }) => {
                   />
                 </ProtectedRoute>
                 <ProtectedRoute
-                  path={`/:${pathRest}/admin/:adminId`}
+                  path={`/:${pathRest}/category/:categoryId`}
                   exact
                   isLoggedIn={isLoggedIn}
                   pathRest={pathRest}
@@ -153,7 +153,7 @@ const Main: FC<IMain> = ({ token, pathRest, setToken }) => {
                   <Admin token={token} pathRest={pathRest} t={t} />
                 </ProtectedRoute>
                 <ProtectedRoute
-                  path={`/:${pathRest}/add/admin`}
+                  path={`/:${pathRest}/add/category`}
                   exact
                   isLoggedIn={isLoggedIn}
                   pathRest={pathRest}
