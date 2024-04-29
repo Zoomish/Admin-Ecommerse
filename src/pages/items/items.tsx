@@ -88,7 +88,7 @@ const Items: FC<IMenu> = ({ token, pathRest, t }) => {
       }
     },
     {
-      title: `${t('name')}`,
+      title: `${t('category')}`,
       dataIndex: 'category.title',
       key: 'category.title',
       render: (title, rest) => (
