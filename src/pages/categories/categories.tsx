@@ -26,7 +26,6 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
 
   const [data, setData] = React.useState<TCategory[]>([])
   const [, setLevelsAccess] = React.useState<ILevelsAccess[]>([])
-  const [PathRest, setPathRest] = React.useState<{ [key: string]: string }>({})
   const location = useLocation()
 
   React.useEffect(() => {
@@ -39,7 +38,6 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
             nameRests[rest._id] = rest.titleRest
           }
         })
-        setPathRest(nameRests)
       })
       .catch((e) => openNotification(e, 'topRight'))
   }, [])
@@ -91,9 +89,9 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
         </Link>
       ),
       sorter: (a, b) => {
-        if (a.id !== undefined && b.id !== undefined) {
+        if (a.title !== undefined && b.title !== undefined) {
           try {
-            return PathRest[a.id].localeCompare(PathRest[b.id])
+            return a.title.localeCompare(b.title)
           } catch (error: any) {
             openNotification(error, 'topRight')
           }
