@@ -29,7 +29,7 @@ const Dishes: FC<IMenu> = ({ token, pathRest, t }) => {
 
   React.useEffect(() => {
     restaurantAPI
-      .getDishes(token)
+      .getDishes()
       .then((res) => {
         setData(res)
         const objectNames: { [key: string]: boolean } = {}
