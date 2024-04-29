@@ -13,12 +13,11 @@ export const getAdmin = async (token: string, id: string) => {
   }).then(async (res) => await handleResponse(res))
 }
 
-export const getAllCategories = async (token: string) => {
-  return await fetch(`${BASE_URL}/rest/adminSuperGet`, {
+export const getAllCategories = async () => {
+  return await fetch(`${BASE_URL}/categories`, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
+      'Content-Type': 'application/json'
     }
   }).then(async (res) => await handleResponse(res))
 }

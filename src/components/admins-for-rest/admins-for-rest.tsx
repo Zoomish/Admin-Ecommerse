@@ -31,7 +31,7 @@ const AdminsForRest: FC<IGroupModifiersForDish> = ({ token, pathRest, t }) => {
 
   React.useEffect(() => {
     adminAPI
-      .getAllAdmins(token)
+      .getAllCategories()
       .then((res) => {
         const nameRests: TAdmin[] = []
         const unUsedAdmied: TAdmin[] = []

@@ -43,7 +43,7 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
   }, [])
   React.useEffect(() => {
     adminAPI
-      .getAllAdmins(token)
+      .getAllCategories()
       .then((res) => {
         setData(res.admins)
         const levelsAccessNames: { [key: string]: boolean } = {}
