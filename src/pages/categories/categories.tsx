@@ -68,7 +68,9 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
         <img
           style={{ width: '100px', height: '100px', objectFit: 'contain' }}
           src={admin.image ? `${BASE_URL}/${admin.image}` : `${imageNoPhoto}`}
-          alt=''
+          onError={(e) => {
+            e.currentTarget.src = imageNoPhoto
+          }}
         />
       )
     },
