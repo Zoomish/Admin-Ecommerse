@@ -16,11 +16,6 @@ interface ISidebar {
 }
 const Sidebar: FC<ISidebar> = ({ setIsLoggedIn, pathRest, t }) => {
   const history = useHistory()
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleUserClick = (): void => {
-    history.push(`/${pathRest}/list`)
-  }
   const handleDishesClick = (): void => {
     history.push(`/${pathRest}/dishes`)
   }
@@ -28,10 +23,10 @@ const Sidebar: FC<ISidebar> = ({ setIsLoggedIn, pathRest, t }) => {
     history.push(`/${pathRest}/categories`)
   }
   const handleInstructionClick = (): void => {
-    history.push('/blog')
+    history.push(`/${pathRest}/blog`)
   }
   const handleRestClick = (): void => {
-    // выход в меню
+    history.push(`/${pathRest}/dishes`)
   }
 
   const handleLogout = (): void => {
