@@ -92,7 +92,9 @@ const Items: FC<IMenu> = ({ token, pathRest, t }) => {
       dataIndex: 'category.title',
       key: 'category.title',
       render: (title, rest) => (
-        <Link to={`/${pathRest}/restaurant/:${rest.id}`}>{title}</Link>
+        <Link to={`/${pathRest}/restaurant/:${rest.id}`}>
+          {rest.category.title}
+        </Link>
       ),
       sorter: (a, b) => {
         if (a.category.title !== undefined && b.category.title !== undefined) {
