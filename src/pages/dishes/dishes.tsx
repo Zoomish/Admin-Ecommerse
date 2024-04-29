@@ -54,21 +54,15 @@ const Dishes: FC<IMenu> = ({ token, pathRest, t }) => {
       title: `${t('image')}`,
       dataIndex: 'image',
       key: 'image',
-      render: (image: string) =>
-        image ? (
-          <img
-            src={`${BASE_URL_CDN}/${image}`}
-            style={{ width: '100px', height: '100px', objectFit: 'contain' }}
-            onError={(e) => {
-              e.currentTarget.src = imageNoPhoto
-            }}
-          />
-        ) : (
-          <img
-            src={imageNoPhoto}
-            style={{ width: '100px', height: '100px', objectFit: 'contain' }}
-          />
-        )
+      render: (image: string) => (
+        <img
+          src={`${BASE_URL_CDN}/${image}`}
+          style={{ width: '100px', height: '100px', objectFit: 'contain' }}
+          onError={(e) => {
+            e.currentTarget.src = imageNoPhoto
+          }}
+        />
+      )
     },
     {
       title: `${t('name')}`,
