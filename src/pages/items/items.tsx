@@ -92,7 +92,7 @@ const Items: FC<IMenu> = ({ token, pathRest, t }) => {
       dataIndex: 'category.title',
       key: 'category.title',
       render: (title, rest) => (
-        <Link to={`/${pathRest}/restaurant/:${rest.id}`}>
+        <Link to={`/${pathRest}/restaurant/:${rest.category.id}`}>
           {rest.category.title}
         </Link>
       ),
