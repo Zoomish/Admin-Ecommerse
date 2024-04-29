@@ -1,6 +1,6 @@
 /* eslint-disable multiline-ternary */
 import React, { FC, useContext } from 'react'
-import * as restaurantAPI from '../../utils/api/items-api'
+import * as restaurantAPI from '../../utils/api/dishes-api'
 import { useLocation, useRouteMatch } from 'react-router-dom'
 import { TRest } from '../../utils/typesFromBackend'
 import { Button, Modal, Upload } from 'antd'

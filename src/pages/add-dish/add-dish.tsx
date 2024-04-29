@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
-import * as restaurantAPI from '../../utils/api/items-api'
+import * as restaurantAPI from '../../utils/api/dishes-api'
 import { TRest, ETariff } from '../../utils/typesFromBackend'
 import { Form, Input, Button, Select, Upload, message, Modal } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
@@ -119,7 +119,7 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
       restaurantAPI
         .createRestaurant(token, newLanguageRest)
         .then((res: TRest) => {
-          history.push(`/${pathRest}/restaurants`)
+          history.push(`/${pathRest}/dishes`)
         })
         .catch((e) => openNotification(e, 'topRight'))
     } else {
