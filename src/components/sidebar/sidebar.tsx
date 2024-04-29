@@ -51,11 +51,11 @@ const Sidebar: FC<ISidebar> = ({ setIsLoggedIn, pathRest, t }) => {
       >
         <Menu.Item key='1' onClick={handleRestaurantsClick}>
           <ContainerOutlined />
-          <span>{t('restaurants')}</span>
+          <span>{t('dishes')}</span>
         </Menu.Item>
         <Menu.Item key='2' onClick={handleAdminsClick}>
           <UserOutlined />
-          <span>{t('admins')}</span>
+          <span>{t('categories')}</span>
         </Menu.Item>
         <Menu.Item key='3' onClick={handleInstructionClick}>
           <InfoCircleOutlined />
