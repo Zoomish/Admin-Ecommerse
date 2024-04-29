@@ -78,7 +78,7 @@ const Dishes: FC<IMenu> = ({ token, pathRest, t }) => {
       dataIndex: 'title',
       key: 'title',
       render: (title, rest) => (
-        <Link to={`/${pathRest}/restaurant/:${rest.id}`}>{title}</Link>
+        <Link to={`/${pathRest}/dish/:${rest.id}`}>{title}</Link>
       ),
       sorter: (a, b) => {
         if (a.title !== undefined && b.title !== undefined) {
@@ -92,7 +92,7 @@ const Dishes: FC<IMenu> = ({ token, pathRest, t }) => {
       dataIndex: 'category.title',
       key: 'category.title',
       render: (title, rest) => (
-        <Link to={`/${pathRest}/restaurant/:${rest.category.id}`}>
+        <Link to={`/${pathRest}/category/:${rest.category.id}`}>
           {rest.category.title}
         </Link>
       ),
