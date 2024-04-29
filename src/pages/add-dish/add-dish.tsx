@@ -181,7 +181,7 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
           <Input onChange={handleChangePath} />
         </Form.Item>
         <Form.Item
-          label={t('logo')}
+          label={t('image')}
           valuePropName='fileList'
           name='image'
           getValueFromEvent={({ file }) => file.originFileObj}
