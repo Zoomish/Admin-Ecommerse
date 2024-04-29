@@ -4,7 +4,7 @@ import {
   InfoCircleOutlined,
   LogoutOutlined,
   ContainerOutlined,
-  InboxOutlined,
+  GroupOutlined,
   VerticalAlignTopOutlined
 } from '@ant-design/icons'
 import { useHistory } from 'react-router'
@@ -54,7 +54,7 @@ const Sidebar: FC<ISidebar> = ({ setIsLoggedIn, pathRest, t }) => {
           <span>{t('dishes')}</span>
         </Menu.Item>
         <Menu.Item key='2' onClick={handleAdminsClick}>
-          <InboxOutlined />
+          <GroupOutlined />
           <span>{t('categories')}</span>
         </Menu.Item>
         <Menu.Item key='3' onClick={handleInstructionClick}>
