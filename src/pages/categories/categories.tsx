@@ -79,7 +79,6 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
       render: (title, restId) => (
         <Link
           to={
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
             restId
               ? `/${pathRest}/restaurant/:${restId.id}`
               : `/${pathRest}/add/restaurant`
