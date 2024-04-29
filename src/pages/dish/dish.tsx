@@ -1,13 +1,10 @@
 /* eslint-disable multiline-ternary */
 import React, { FC, useContext } from 'react'
-import { useLocation, useRouteMatch } from 'react-router-dom'
-import { ECountry, TRest } from '../../utils/typesFromBackend'
-import { Segmented } from 'antd'
 import * as restaurantAPI from '../../utils/api/dishes-api'
+import { useHistory, useLocation, useRouteMatch } from 'react-router-dom'
+import { TRest, ETariff, ECountry } from '../../utils/typesFromBackend'
+import { Form, Input, Button, Select, Popconfirm, Modal } from 'antd'
 import { NotificationContext } from '../../components/notification-provider/notification-provider'
-import EditorRest from '../../components/editor-rest/editor-rest'
-import AdminsForRest from '../../components/admins-for-rest/admins-for-rest'
-import EditorRestMenu from '../../components/editor-rest-menu/editor-rest-menu'
 
 interface IRest {
   token: string
@@ -18,95 +15,158 @@ interface IRest {
 
 const Dish: FC<IRest> = ({ token, t, pathRest, language }) => {
   const { openNotification } = useContext(NotificationContext)
+  const [form] = Form.useForm()
+  const history = useHistory()
+  const layout = {
+    labelCol: { span: 4 },
+    wrapperCol: { span: 14 }
+  }
+  // eslint-disable-next-line prefer-regex-literals
+  // const { restId } = useParams<{ restId: string }>()
   const pathname = useLocation().pathname
   const match = useRouteMatch(pathname)
   const restId = Object.keys(match?.params as string)[0]
-  const [value, setValue] = React.useState<string | number>(t('restaurant'))
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-  const [rest, setRest] = React.useState<TRest>({} as TRest)
-  const [isRest, setIsRest] = React.useState(false)
+  const [rest, setDish] = React.useState<TRest>({} as TRest)
+  const [isDishLoading, setIsDishLoading] = React.useState(false)
+  const [isModalVisible, setIsModalVisible] = React.useState(false)
+  const [formData, setFormData] = React.useState(() => {
+    const storedFormDataString = localStorage.getItem('formDataRest')
+    return storedFormDataString ? JSON.parse(storedFormDataString) : null
+  })
+
+  const handleFormChange = (): void => {
+    const allValues = form.getFieldsValue()
+    const updateallValues = { ...allValues, _id: rest._id }
+    setFormData(updateallValues)
+  }
+
+  React.useEffect(() => {
+    if (Object.keys(rest).length > 0 && formData) {
+      if (rest._id !== formData._id) {
+        localStorage.removeItem('formDataRest')
+      }
+    }
+    localStorage.setItem('formDataRest', JSON.stringify(formData))
+  }, [formData])
 
   React.useEffect(() => {
     restaurantAPI
       .getRestaurant(token, restId)
       .then((res) => {
-        setRest(res)
-        setIsRest(true)
-        const localStorageValue = window.localStorage.getItem('value')
-        if (localStorageValue) {
-          setValue(t(localStorageValue))
+        setDish(res)
+        const storedFormDataString = localStorage.getItem('formDataRest')
+        const parsedFormData = storedFormDataString
+          ? JSON.parse(storedFormDataString)
+          : null
+
+        if (parsedFormData && parsedFormData._id === rest._id) {
+          form.setFieldsValue({
+            title: parsedFormData.title
+          })
+          form.setFieldsValue({
+            tariff: parsedFormData.tariff
+          })
         } else {
-          setValue(t('restaurant'))
-          window.localStorage.removeItem('value')
+          form.setFieldsValue({
+            title: res.titleRest
+          })
+          form.setFieldsValue({
+            tariff: res.tariff
+          })
         }
+        setIsDishLoading(true)
       })
       .catch((e) => openNotification(e, 'topRight'))
   }, [language])
 
-  React.useEffect(() => {
-    return () => {
-      window.localStorage.removeItem('value')
-    }
-  }, [])
+  const validateMessages = {
+    // eslint-disable-next-line no-template-curly-in-string
+    required: '${label} ' + `${t('it-is-necessary-to-fill-in')}!`
+  }
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const onFinish = (values: any) => {
+    const newLanguageDish: any = {}
+    newLanguageDish.tariff = values.tariff
+    newLanguageDish.titleRest = values.title
+    newLanguageDish._id = rest._id
+    restaurantAPI
+      .updateRestaurant(token, newLanguageDish)
+      .then((res: TRest) => {
+        history.push(`/${pathRest}/restaurants`)
+      })
+      .catch((e) => openNotification(e, 'topRight'))
+  }
+
+  function confirm(): void {
+    restaurantAPI
+      .deleteRestaurant(token, rest._id)
+      .then(() => history.push(`/${pathRest}/restaurants`))
+      .catch((e) => openNotification(e, 'topRight'))
+  }
+
+  const handleModalClose = (): void => {
+    setIsModalVisible(false)
+  }
 
   return (
     <>
-      <h4
-        style={{
-          marginBottom: '15px',
-          marginTop: '0',
-          color: '#000',
-          fontSize: '1.75rem',
-          fontWeight: '600',
-          padding: '15px'
-        }}
-      >
-        {isRest && rest && rest.titleRest ? rest.titleRest : ''}
-      </h4>
-      <Segmented
-        block
-        options={[t('restaurant'), t('admins'), t('menu')]}
-        value={value}
-        onChange={setValue}
-      />{' '}
-      {isRest ? (
-        value === t('restaurant') ? (
-          <EditorRest
-            allCategories={[]}
-            token={token}
-            pathRest={pathRest}
-            t={t}
-            language={language}
-          ></EditorRest>
-        ) : (
-          ''
-        )
-      ) : (
-        ''
-      )}
-      {isRest ? (
-        value === t('admins') ? (
-          <AdminsForRest
-            token={token}
-            pathRest={pathRest}
-            t={t}
-          ></AdminsForRest>
-        ) : (
-          ''
-        )
-      ) : (
-        ''
-      )}
-      {isRest ? (
-        value === t('menu') ? (
-          <EditorRestMenu
-            token={token}
-            pathRest={pathRest}
-            t={t}
-          ></EditorRestMenu>
-        ) : (
-          ''
-        )
+      {
+        <Modal
+          title={t('alert')}
+          open={isModalVisible}
+          closable={false}
+          footer={[
+            <Button key='ok' type='primary' onClick={handleModalClose}>
+              {t('close')}
+            </Button>
+          ]}
+        >
+          {t('field_must_not_empty')}
+        </Modal>
+      }
+      {isDishLoading ? (
+        <Form
+          {...layout}
+          onFinish={onFinish}
+          validateMessages={validateMessages}
+          name='rest'
+          form={form}
+          style={{ paddingTop: '1.5rem' }}
+          onValuesChange={handleFormChange}
+        >
+          <Form.Item
+            label={t('name')}
+            rules={[{ required: true }]}
+            name='title'
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item required={true} label={t('tariff')} name='tariff'>
+            <Select>
+              {Object.keys(ETariff).map((tariff: any) => (
+                <Select.Option value={tariff} key={tariff}>
+                  {tariff}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 4 }}>
+            <Button type='primary' htmlType='submit'>
+              {t('save')}
+            </Button>
+          </Form.Item>
+          <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 4 }}>
+            <Popconfirm
+              title={t('you-sure-want-delete')}
+              onConfirm={confirm}
+              okText={t('yes')}
+              cancelText={t('no')}
+            >
+              <Button htmlType='button'>{t('delete')}</Button>
+            </Popconfirm>
+          </Form.Item>
+        </Form>
       ) : (
         ''
       )}
