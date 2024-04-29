@@ -3,7 +3,7 @@
 import { BASE_URL } from '../const'
 import { handleResponse } from '../helpers'
 
-export const getItems = async (token: string) => {
+export const getDishes = async (token: string) => {
   return await fetch(`${BASE_URL}/items`, {
     method: 'GET',
     headers: {

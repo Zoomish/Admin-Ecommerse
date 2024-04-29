@@ -38,7 +38,7 @@ const AddAdmin: FC<IAddAdmin> = ({ token, pathRest, t }) => {
   }
   React.useEffect(() => {
     restaurantAPI
-      .getItems(token)
+      .getDishes(token)
       .then((res) => {
         const nameRests: { [key: string]: string } = {}
         res.rests.forEach((rest: TRest) => {
