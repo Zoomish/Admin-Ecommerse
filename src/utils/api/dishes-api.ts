@@ -35,7 +35,7 @@ export const updateRestaurant = async (token: string, data: any) => {
   }).then(async (res) => await handleResponse(res))
 }
 
-export const createRestaurant = async (token: string, data: any) => {
+export const createDIsh = async (token: string, data: any) => {
   return await fetch(`${BASE_URL}/rest/create`, {
     method: 'POST',
     headers: {

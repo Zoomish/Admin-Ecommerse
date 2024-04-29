@@ -117,7 +117,7 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
     }
     if (!values.image) {
       restaurantAPI
-        .createRestaurant(token, newLanguageRest)
+        .createDIsh(token, newLanguageRest)
         .then((res: TRest) => {
           history.push(`/${pathRest}/dishes`)
         })
@@ -131,7 +131,7 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
           delete newLanguageRest.image
           newLanguageRest.logoPath = res.file_name
           restaurantAPI
-            .createRestaurant(token, newLanguageRest)
+            .createDIsh(token, newLanguageRest)
             .then((res: TRest) => {
               // eslint-disable-next-line @typescript-eslint/no-base-to-string, @typescript-eslint/restrict-template-expressions
               history.push(`/${pathRest}/restaurants`)
