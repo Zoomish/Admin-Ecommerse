@@ -1,11 +1,10 @@
 import { Table } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import React, { FC, useContext } from 'react'
-import { ECountry, TCategory, TRest } from '../../utils/typesFromBackend'
+import { ECountry, TCategory } from '../../utils/typesFromBackend'
 import * as adminAPI from '../../utils/api/category-api'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { NotificationContext } from '../../components/notification-provider/notification-provider'
-import * as restaurantAPI from '../../utils/api/dishes-api'
 import imageNoPhoto from '../../assets/images/no_photo.png'
 import { BASE_URL } from '../../utils/const'
 
@@ -27,20 +26,6 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
   const [data, setData] = React.useState<TCategory[]>([])
   const [, setLevelsAccess] = React.useState<ILevelsAccess[]>([])
   const location = useLocation()
-
-  React.useEffect(() => {
-    restaurantAPI
-      .getDishes()
-      .then((res) => {
-        const nameRests: { [key: string]: string } = {}
-        res.rests.forEach((rest: TRest) => {
-          if (!nameRests[rest.titleRest] && rest.titleRest) {
-            nameRests[rest._id] = rest.titleRest
-          }
-        })
-      })
-      .catch((e) => openNotification(e, 'topRight'))
-  }, [])
   React.useEffect(() => {
     adminAPI
       .getAllCategories()
@@ -63,8 +48,7 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
       title: `${t('logo')}`,
       dataIndex: 'image',
       key: 'image',
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      render: (nickname, admin) => (
+      render: (image, admin) => (
         <img
           style={{ width: '100px', height: '100px', objectFit: 'contain' }}
           src={admin.image ? `${BASE_URL}/${admin.image}` : `${imageNoPhoto}`}
