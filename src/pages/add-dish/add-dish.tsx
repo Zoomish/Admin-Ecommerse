@@ -184,14 +184,14 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
         <Form.Item
           label={t('name')}
           rules={[{ required: true }]}
-          name='titleRest'
+          name='title'
         >
           <Input onChange={handleChangeTitle} />
         </Form.Item>
         <Form.Item
-          label={t('path')}
+          label={t('description')}
           rules={[{ required: true }]}
-          name='pathRest'
+          name='description'
         >
           <Input onChange={handleChangePath} />
         </Form.Item>
