@@ -15,7 +15,7 @@ import ChoiseLanguage from '../choise-language/choise-language'
 import ProtectedRoute from '../protected-route/protected-route'
 import Sidebar from '../sidebar/sidebar'
 import Items from '../../pages/items/items'
-import AddRestaurants from '../../pages/add-restaurant/add-restaurant'
+import AddRestaurants from '../../pages/add-dish/add-dish'
 import Item from '../../pages/item/item'
 import Admins from '../../pages/admins/admins'
 import AddAdmin from '../../pages/add-admin/add-admin'
@@ -187,7 +187,7 @@ const Main: FC<IMain> = ({ token, pathRest, setToken }) => {
                   />
                 </ProtectedRoute>
                 <ProtectedRoute
-                  path={`/:${pathRest}/add/restaurant`}
+                  path={`/:${pathRest}/add/item`}
                   exact
                   isLoggedIn={isLoggedIn}
                   pathRest={pathRest}

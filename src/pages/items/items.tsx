@@ -132,7 +132,7 @@ const Items: FC<IMenu> = ({ token, pathRest, t }) => {
           <p style={{ marginBottom: '0' }}>{t('your-list-of-dishes')}</p>
         </div>
         <NavLink
-          to={`/${pathRest}/add/items`}
+          to={`/${pathRest}/add/item`}
           style={{
             color: '#fff',
             backgroundColor: '#2bc155',

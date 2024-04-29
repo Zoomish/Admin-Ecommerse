@@ -16,13 +16,13 @@ interface IFileList {
   uid: string
 }
 
-interface IAddRest {
+interface IAddDish {
   pathRest: string
   token: string
   t: (arg0: string) => string
 }
 
-const AddRestaurants: FC<IAddRest> = ({ token, pathRest, t }) => {
+const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
   const { openNotification } = useContext(NotificationContext)
   const [form] = Form.useForm()
   const history = useHistory()
@@ -240,4 +240,4 @@ const AddRestaurants: FC<IAddRest> = ({ token, pathRest, t }) => {
     </>
   )
 }
-export default AddRestaurants
+export default AddDish
