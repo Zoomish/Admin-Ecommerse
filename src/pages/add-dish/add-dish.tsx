@@ -45,6 +45,10 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
     setPathRest(e.target.value)
   }
 
+  function handleChangePrice(e: React.ChangeEvent<HTMLInputElement>): void {
+    setTitleRest(e.target.value)
+  }
+
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const getBase64 = (img: RcFile, callback: (url: string) => void) => {
     const reader = new FileReader()
@@ -186,7 +190,7 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
           <Input onChange={handleChangePath} />
         </Form.Item>
         <Form.Item label={t('price')} rules={[{ required: true }]} name='price'>
-          <Input onChange={handleChangeTitle} />
+          <Input onChange={handleChangePrice} />
         </Form.Item>
         <Form.Item
           label={t('image')}
