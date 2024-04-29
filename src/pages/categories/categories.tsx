@@ -77,15 +77,7 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
       dataIndex: 'title',
       key: 'title',
       render: (title, restId) => (
-        <Link
-          to={
-            restId
-              ? `/${pathRest}/restaurant/:${restId.id}`
-              : `/${pathRest}/add/restaurant`
-          }
-        >
-          {title}
-        </Link>
+        <Link to={`/${pathRest}/restaurant/:${restId.id}`}>{title}</Link>
       ),
       sorter: (a, b) => {
         if (a.title !== undefined && b.title !== undefined) {
