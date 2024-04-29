@@ -12,12 +12,11 @@ export const getDishes = async () => {
   }).then(async (res) => await handleResponse(res))
 }
 
-export const getRestaurant = async (token: string, id: string) => {
-  return await fetch(`${BASE_URL}/rest/${id}`, {
+export const getDish = async (id: string) => {
+  return await fetch(`${BASE_URL}/items/${id}`, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
+      'Content-Type': 'application/json'
     }
   }).then(async (res) => await handleResponse(res))
 }

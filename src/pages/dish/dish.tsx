@@ -52,7 +52,7 @@ const Dish: FC<IRest> = ({ token, t, pathRest, language }) => {
 
   React.useEffect(() => {
     restaurantAPI
-      .getRestaurant(token, restId)
+      .getDish(restId)
       .then((res) => {
         setDish(res)
         const storedFormDataString = localStorage.getItem('formDataRest')
