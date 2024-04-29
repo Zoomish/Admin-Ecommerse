@@ -73,7 +73,7 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
       )
     },
     {
-      title: `${t('restaurant')}`,
+      title: `${t('name')}`,
       dataIndex: 'title',
       key: 'title',
       render: (title, restId) => (
