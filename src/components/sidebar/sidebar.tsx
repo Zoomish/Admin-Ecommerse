@@ -21,11 +21,11 @@ const Sidebar: FC<ISidebar> = ({ setIsLoggedIn, pathRest, t }) => {
   const handleUserClick = (): void => {
     history.push(`/${pathRest}/list`)
   }
-  const handleRestaurantsClick = (): void => {
-    history.push(`/${pathRest}/items`)
+  const handleDishesClick = (): void => {
+    history.push(`/${pathRest}/dishes`)
   }
-  const handleAdminsClick = (): void => {
-    history.push(`/${pathRest}/admins`)
+  const handleCategoriesClick = (): void => {
+    history.push(`/${pathRest}/categories`)
   }
   const handleInstructionClick = (): void => {
     history.push('/blog')
@@ -49,11 +49,11 @@ const Sidebar: FC<ISidebar> = ({ setIsLoggedIn, pathRest, t }) => {
         style={{ textAlign: 'left' }}
         defaultSelectedKeys={['1']}
       >
-        <Menu.Item key='1' onClick={handleRestaurantsClick}>
+        <Menu.Item key='1' onClick={handleDishesClick}>
           <ContainerOutlined />
           <span>{t('dishes')}</span>
         </Menu.Item>
-        <Menu.Item key='2' onClick={handleAdminsClick}>
+        <Menu.Item key='2' onClick={handleCategoriesClick}>
           <GroupOutlined />
           <span>{t('categories')}</span>
         </Menu.Item>
