@@ -80,9 +80,8 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
       title: `${t('quantity-dishes')}`,
       dataIndex: 'items',
       key: 'items',
-      render: (image, category) => (
-        <p>{category.items.length}</p>
-      )
+      render: (image, category) => <p>{category.items.length}</p>,
+      sorter: (a, b) => a.items.length - b.items.length
     }
   ]
   return (
