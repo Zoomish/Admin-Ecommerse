@@ -17,7 +17,7 @@ import Sidebar from '../sidebar/sidebar'
 import Items from '../../pages/dishes/dishes'
 import AddRestaurants from '../../pages/add-dish/add-dish'
 import Item from '../../pages/item/item'
-import Admins from '../../pages/admins/admins'
+import Admins from '../../pages/categories/categories'
 import AddAdmin from '../../pages/add-category/add-category'
 import Admin from '../../pages/category/category'
 
