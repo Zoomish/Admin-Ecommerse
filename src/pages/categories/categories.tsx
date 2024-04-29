@@ -1,11 +1,13 @@
 import { Table } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import React, { FC, useContext } from 'react'
-import { ECountry, TAdmin, TRest } from '../../utils/typesFromBackend'
+import { ECountry, TCategory, TRest } from '../../utils/typesFromBackend'
 import * as adminAPI from '../../utils/api/category-api'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { NotificationContext } from '../../components/notification-provider/notification-provider'
 import * as restaurantAPI from '../../utils/api/dishes-api'
+import imageNoPhoto from '../../assets/images/no_photo.png'
+import { BASE_URL } from '../../utils/const'
 
 interface ILevelsAccess {
   text: string
@@ -22,8 +24,8 @@ interface IAdmins {
 const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
   const { openNotification } = useContext(NotificationContext)
 
-  const [data, setData] = React.useState<TAdmin[]>([])
-  const [levelsAccess, setLevelsAccess] = React.useState<ILevelsAccess[]>([])
+  const [data, setData] = React.useState<TCategory[]>([])
+  const [, setLevelsAccess] = React.useState<ILevelsAccess[]>([])
   const [PathRest, setPathRest] = React.useState<{ [key: string]: string }>({})
   const location = useLocation()
 
@@ -45,14 +47,10 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
     adminAPI
       .getAllCategories()
       .then((res) => {
-        setData(res.admins)
+        setData(res)
+        console.log(data)
         const levelsAccessNames: { [key: string]: boolean } = {}
         const resultArrayLevels: ILevelsAccess[] = []
-        res.admins.forEach((admin: TAdmin) => {
-          if (!levelsAccessNames[admin.level_access]) {
-            levelsAccessNames[admin.level_access] = true
-          }
-        })
         for (const key of Object.keys(levelsAccessNames)) {
           resultArrayLevels.push({ text: key, value: key })
         }
@@ -62,52 +60,46 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
     const currentPath = location.pathname
     window.localStorage.setItem('initialRoute', currentPath)
   }, [])
-  const columns: ColumnsType<TAdmin> = [
+  const columns: ColumnsType<TCategory> = [
     {
       title: `${t('login')}`,
-      dataIndex: 'nickname',
-      key: 'nickname',
+      dataIndex: 'image',
+      key: 'image',
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
       render: (nickname, admin) => (
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        <Link to={`/${pathRest}/admin/:${admin._id}`}>{nickname}</Link>
+        <img
+          style={{ width: '100px', height: '100px', objectFit: 'contain' }}
+          src={admin.image ? `${BASE_URL}/${admin.image}` : `${imageNoPhoto}`}
+          alt=''
+        />
       )
     },
     {
       title: `${t('restaurant')}`,
-      dataIndex: 'rest_id',
-      key: 'rest_id',
-      render: (restId) => (
+      dataIndex: 'title',
+      key: 'title',
+      render: (title, restId) => (
         <Link
           to={
             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            restId ? `/${pathRest}/restaurant/:${restId}` : `/${pathRest}/add/restaurant`
+            restId
+              ? `/${pathRest}/restaurant/:${restId.id}`
+              : `/${pathRest}/add/restaurant`
           }
         >
-          {PathRest[restId] ? PathRest[restId] : t('no-restaurant')}
+          {title}
         </Link>
       ),
       sorter: (a, b) => {
-        if (a.rest_id !== undefined && b.rest_id !== undefined) {
+        if (a.id !== undefined && b.id !== undefined) {
           try {
-            return PathRest[a.rest_id].localeCompare(PathRest[b.rest_id])
+            return PathRest[a.id].localeCompare(PathRest[b.id])
           } catch (error: any) {
             openNotification(error, 'topRight')
           }
         }
         return 0
       }
-    },
-    {
-      title: `${t('level_access')}`,
-      dataIndex: 'level_access',
-      key: 'level_access',
-      render: (levelAccess) => <p>{levelAccess}</p>,
-      sorter: (a, b) => a.level_access - b.level_access,
-      filters: [...levelsAccess],
-      onFilter: (value: string | number | boolean, record) =>
-        // eslint-disable-next-line eqeqeq
-        record.level_access == value
     }
   ]
   return (
@@ -122,9 +114,7 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
         }}
       >
         <div style={{ display: 'block', marginRight: 'auto' }}>
-          <h2 style={{ fontWeight: 600, marginBottom: '0' }}>
-            {t('admins')}
-          </h2>
+          <h2 style={{ fontWeight: 600, marginBottom: '0' }}>{t('admins')}</h2>
           <p style={{ marginBottom: '0' }}>{t('list-of-admins')}</p>
         </div>
         <NavLink
