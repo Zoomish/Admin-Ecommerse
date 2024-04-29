@@ -171,7 +171,7 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
           padding: '15px'
         }}
       >
-        {t('add-rest')}
+        {t('add-dish')}
       </h4>
       <Form
         {...layout}
