@@ -160,6 +160,7 @@
   "order-composition": "Order composition",
   "increase-number": "Increase the number?",
   "quantity": "Quantity",
+  "quantity-dishes": "Number of dishes",
   "decrease-number": "Reduce the number?",
   "delete-permanently": "Permanently delete it?",
   "order-no": "Order No.",

@@ -75,6 +75,14 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
         }
         return 0
       }
+    },
+    {
+      title: `${t('quantity-dishes')}`,
+      dataIndex: 'items',
+      key: 'items',
+      render: (image, category) => (
+        <p>{category.items.length}</p>
+      )
     }
   ]
   return (
@@ -89,7 +97,9 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
         }}
       >
         <div style={{ display: 'block', marginRight: 'auto' }}>
-          <h2 style={{ fontWeight: 600, marginBottom: '0' }}>{t('categories')}</h2>
+          <h2 style={{ fontWeight: 600, marginBottom: '0' }}>
+            {t('categories')}
+          </h2>
           <p style={{ marginBottom: '0' }}>{t('your-list-categories')}</p>
         </div>
         <NavLink

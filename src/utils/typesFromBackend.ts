@@ -240,6 +240,7 @@ export interface TCategory {
   id: string
   image: string
   title: string
+  items: TDish[]
 }
 export interface TDish {
   id: string
