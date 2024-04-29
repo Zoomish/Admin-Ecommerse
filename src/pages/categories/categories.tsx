@@ -89,11 +89,11 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
         }}
       >
         <div style={{ display: 'block', marginRight: 'auto' }}>
-          <h2 style={{ fontWeight: 600, marginBottom: '0' }}>{t('admins')}</h2>
-          <p style={{ marginBottom: '0' }}>{t('list-of-admins')}</p>
+          <h2 style={{ fontWeight: 600, marginBottom: '0' }}>{t('categories')}</h2>
+          <p style={{ marginBottom: '0' }}>{t('your-list-categories')}</p>
         </div>
         <NavLink
-          to={`/${pathRest}/add/admin`}
+          to={`/${pathRest}/add/category`}
           style={{
             color: '#fff',
             backgroundColor: '#2bc155',
