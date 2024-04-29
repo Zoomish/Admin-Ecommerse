@@ -161,7 +161,7 @@ const Main: FC<IMain> = ({ token, pathRest, setToken }) => {
                   <AddAdmin token={token} pathRest={pathRest} t={t} />
                 </ProtectedRoute>
                 <ProtectedRoute
-                  path={`/:${pathRest}/items`}
+                  path={`/:${pathRest}/dishes`}
                   exact
                   isLoggedIn={isLoggedIn}
                   pathRest={pathRest}
@@ -174,7 +174,7 @@ const Main: FC<IMain> = ({ token, pathRest, setToken }) => {
                   />
                 </ProtectedRoute>
                 <ProtectedRoute
-                  path={`/:${pathRest}/item/:itemId`}
+                  path={`/:${pathRest}/dish/:dishId`}
                   exact
                   isLoggedIn={isLoggedIn}
                   pathRest={pathRest}
@@ -187,7 +187,7 @@ const Main: FC<IMain> = ({ token, pathRest, setToken }) => {
                   />
                 </ProtectedRoute>
                 <ProtectedRoute
-                  path={`/:${pathRest}/add/item`}
+                  path={`/:${pathRest}/add/dish`}
                   exact
                   isLoggedIn={isLoggedIn}
                   pathRest={pathRest}
