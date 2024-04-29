@@ -127,9 +127,9 @@ const Items: FC<IMenu> = ({ token, pathRest, t }) => {
       >
         <div style={{ display: 'block', marginRight: 'auto' }}>
           <h2 style={{ fontWeight: 600, marginBottom: '0' }}>
-            {t('restaurants')}
+            {t('dishes')}
           </h2>
-          <p style={{ marginBottom: '0' }}>{t('list-of-restaurants')}</p>
+          <p style={{ marginBottom: '0' }}>{t('your-list-of-dishes')}</p>
         </div>
         <NavLink
           to={`/${pathRest}/add/items`}
