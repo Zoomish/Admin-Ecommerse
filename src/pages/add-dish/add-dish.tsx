@@ -124,7 +124,7 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
   const onFinish = (values: any) => {
     const newLanguageRest: any = { ...values }
     restaurantAPI
-      .createDIsh(token, newLanguageRest)
+      .createDish(token, newLanguageRest)
       .then((res: TRest) => {
         history.push(`/${pathRest}/dishes`)
       })
