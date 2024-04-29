@@ -9,7 +9,6 @@ import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface'
 import ImgCrop from 'antd-img-crop'
 import { NotificationContext } from '../../components/notification-provider/notification-provider'
 import * as adminAPI from '../../utils/api/category-api'
-import * as imageAPI from '../../utils/api/image-api'
 
 interface IFileList {
   url: string
@@ -123,36 +122,13 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const onFinish = (values: any) => {
-    const newLanguageRest: any = {
-      titleRest: values.titleRest,
-      pathRest: values.pathRest,
-      tariff: values.tariff
-    }
-    if (!values.image) {
-      restaurantAPI
-        .createDIsh(token, newLanguageRest)
-        .then((res: TRest) => {
-          history.push(`/${pathRest}/dishes`)
-        })
-        .catch((e) => openNotification(e, 'topRight'))
-    } else {
-      const formData = new FormData()
-      formData.append('image', values.image)
-      imageAPI
-        .createImage(formData, token)
-        .then((res) => {
-          delete newLanguageRest.image
-          newLanguageRest.logoPath = res.file_name
-          restaurantAPI
-            .createDIsh(token, newLanguageRest)
-            .then((res: TRest) => {
-              // eslint-disable-next-line @typescript-eslint/no-base-to-string, @typescript-eslint/restrict-template-expressions
-              history.push(`/${pathRest}/restaurants`)
-            })
-            .catch((e) => openNotification(e, 'topRight'))
-        })
-        .catch((e) => openNotification(e, 'topRight'))
-    }
+    const newLanguageRest: any = { ...values }
+    restaurantAPI
+      .createDIsh(token, newLanguageRest)
+      .then((res: TRest) => {
+        history.push(`/${pathRest}/dishes`)
+      })
+      .catch((e) => openNotification(e, 'topRight'))
   }
 
   const handleModalClose = (): void => {
