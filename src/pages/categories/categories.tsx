@@ -60,7 +60,7 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
   }, [])
   const columns: ColumnsType<TCategory> = [
     {
-      title: `${t('login')}`,
+      title: `${t('logo')}`,
       dataIndex: 'image',
       key: 'image',
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
