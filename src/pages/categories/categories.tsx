@@ -20,7 +20,7 @@ interface IAdmins {
   language: ECountry
 }
 
-const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
+const Categories: FC<IAdmins> = ({ token, pathRest, t }) => {
   const { openNotification } = useContext(NotificationContext)
 
   const [data, setData] = React.useState<TCategory[]>([])
@@ -123,4 +123,4 @@ const Admins: FC<IAdmins> = ({ token, pathRest, t }) => {
     </div>
   )
 }
-export default Admins
+export default Categories
