@@ -20,7 +20,7 @@ interface IMenu {
   language: ECountry
 }
 
-const Items: FC<IMenu> = ({ token, pathRest, t }) => {
+const Dishes: FC<IMenu> = ({ token, pathRest, t }) => {
   const { openNotification } = useContext(NotificationContext)
 
   const [data, setData] = React.useState<TDish[]>([])
@@ -154,4 +154,4 @@ const Items: FC<IMenu> = ({ token, pathRest, t }) => {
     </div>
   )
 }
-export default Items
+export default Dishes
