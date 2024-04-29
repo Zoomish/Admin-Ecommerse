@@ -88,6 +88,20 @@ const Items: FC<IMenu> = ({ token, pathRest, t }) => {
       }
     },
     {
+      title: `${t('name')}`,
+      dataIndex: 'category.title',
+      key: 'category.title',
+      render: (title, rest) => (
+        <Link to={`/${pathRest}/restaurant/:${rest.id}`}>{title}</Link>
+      ),
+      sorter: (a, b) => {
+        if (a.category.title !== undefined && b.category.title !== undefined) {
+          return a.category.title.localeCompare(b.category.title)
+        }
+        return 0
+      }
+    },
+    {
       title: `${t('price')}`,
       dataIndex: 'price',
       key: 'price',
@@ -116,7 +130,7 @@ const Items: FC<IMenu> = ({ token, pathRest, t }) => {
           <p style={{ marginBottom: '0' }}>{t('list-of-restaurants')}</p>
         </div>
         <NavLink
-          to={`/${pathRest}/add/restaurant`}
+          to={`/${pathRest}/add/items`}
           style={{
             color: '#fff',
             backgroundColor: '#2bc155',

@@ -237,15 +237,9 @@ export interface TModifier {
 }
 
 export interface TCategory {
-  _id: string
-  active: boolean
-  category_id: TCategory | string | null
-  idFromIiko: string
-  noImagesCategory: boolean
-  sort: number
-  title: IMultiLang
-  typeMenu_id: string
-  rest_id: TRest | string
+  id: string
+  image: string
+  title: string
 }
 export interface TDish {
   id: string
