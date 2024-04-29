@@ -34,16 +34,13 @@ export const updateRestaurant = async (token: string, data: any) => {
   }).then(async (res) => await handleResponse(res))
 }
 
-export const createDish = async (token: string, data: any) => {
+export const createDish = async (token: string, formData: any) => {
   return await fetch(`${BASE_URL}/items`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     },
-    body: JSON.stringify({
-      ...data
-    })
+    body: formData
   }).then(async (res) => await handleResponse(res))
 }
 

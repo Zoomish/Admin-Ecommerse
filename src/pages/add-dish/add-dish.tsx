@@ -122,9 +122,13 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const onFinish = (values: any) => {
-    const newLanguageRest: any = { ...values }
+    const formData = new FormData()
+    formData.append('image', values.image)
+    formData.append('title', values.title)
+    formData.append('categoryId', values.categoryId)
+    formData.append('description', values.description)
     restaurantAPI
-      .createDish(token, newLanguageRest)
+      .createDish(token, formData)
       .then((res: TRest) => {
         history.push(`/${pathRest}/dishes`)
       })
