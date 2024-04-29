@@ -18,8 +18,8 @@ import Items from '../../pages/dishes/dishes'
 import AddRestaurants from '../../pages/add-dish/add-dish'
 import Item from '../../pages/item/item'
 import Admins from '../../pages/admins/admins'
-import AddAdmin from '../../pages/add-admin/add-admin'
-import Admin from '../../pages/admin/admin'
+import AddAdmin from '../../pages/add-category/add-category'
+import Admin from '../../pages/category/category'
 
 const { Header, Sider, Content } = Layout
 
