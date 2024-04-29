@@ -1,13 +1,14 @@
 import React, { FC, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import * as restaurantAPI from '../../utils/api/dishes-api'
-import { TRest, ETariff } from '../../utils/typesFromBackend'
+import { TRest, TCategory } from '../../utils/typesFromBackend'
 import { Form, Input, Button, Select, Upload, message, Modal } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import type { UploadChangeParam } from 'antd/es/upload'
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface'
 import ImgCrop from 'antd-img-crop'
 import { NotificationContext } from '../../components/notification-provider/notification-provider'
+import * as adminAPI from '../../utils/api/category-api'
 import * as imageAPI from '../../utils/api/image-api'
 
 interface IFileList {
@@ -33,6 +34,7 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
   const [loading, setLoading] = React.useState(false)
   const [fileList, setFileList] = React.useState<IFileList[]>([])
   const [isModalVisible, setIsModalVisible] = React.useState(false)
+  const [categories, setCategories] = React.useState<TCategory[]>([])
   const [titleRest, setTitleRest] = React.useState('')
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [PathRest, setPathRest] = React.useState('')
@@ -108,6 +110,17 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
     required: '${label} ' + `${t('it-is-necessary-to-fill-in')}!`
   }
 
+  React.useEffect(() => {
+    adminAPI
+      .getAllCategories()
+      .then((res) => {
+        setCategories(res)
+      })
+      .catch((e) => openNotification(e, 'topRight'))
+    const currentPath = location.pathname
+    window.localStorage.setItem('initialRoute', currentPath)
+  }, [])
+
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const onFinish = (values: any) => {
     const newLanguageRest: any = {
@@ -181,11 +194,7 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
         form={form}
         style={{ paddingTop: '1.5rem' }}
       >
-        <Form.Item
-          label={t('name')}
-          rules={[{ required: true }]}
-          name='title'
-        >
+        <Form.Item label={t('name')} rules={[{ required: true }]} name='title'>
           <Input onChange={handleChangeTitle} />
         </Form.Item>
         <Form.Item
@@ -222,11 +231,11 @@ const AddDish: FC<IAddDish> = ({ token, pathRest, t }) => {
             </Upload>
           </ImgCrop>
         </Form.Item>
-        <Form.Item label={t('tariff')} name='tariff' required={true}>
+        <Form.Item label={t('category')} name='categoryId' required={true}>
           <Select>
-            {Object.keys(ETariff).map((tariff: any) => (
-              <Select.Option value={tariff} key={tariff}>
-                {tariff}
+            {categories.map((category: TCategory) => (
+              <Select.Option value={category.id} key={category.id}>
+                {category.title}
               </Select.Option>
             ))}
           </Select>

@@ -248,6 +248,7 @@ export interface TDish {
   description: string
   image: string
   price: number
+  categoryId: number
   category: TCategory
 }
 export interface TSubCategories {
