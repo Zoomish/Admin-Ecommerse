@@ -4,7 +4,7 @@ import { Link, useLocation, useRouteMatch } from 'react-router-dom'
 import { TAdmin } from '../../utils/typesFromBackend'
 import { DeleteTwoTone } from '@ant-design/icons'
 import { ColumnsType } from 'antd/es/table'
-import * as adminAPI from '../../utils/api/admin-api'
+import * as adminAPI from '../../utils/api/category-api'
 import { NotificationContext } from '../notification-provider/notification-provider'
 
 interface ILevelsAccess {

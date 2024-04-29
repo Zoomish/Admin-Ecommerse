@@ -1,5 +1,5 @@
 /* eslint-disable multiline-ternary */
-import * as adminAPI from '../../utils/api/admin-api'
+import * as adminAPI from '../../utils/api/category-api'
 import React, { FC, useContext } from 'react'
 import { useLocation, useRouteMatch } from 'react-router-dom'
 import { TAdmin } from '../../utils/typesFromBackend'

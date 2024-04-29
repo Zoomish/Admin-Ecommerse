@@ -2,7 +2,7 @@ import { Form, Button, Input } from 'antd'
 import React, { FC, useContext } from 'react'
 import { useHistory, useLocation, useRouteMatch } from 'react-router-dom'
 import { TAdmin } from '../../utils/typesFromBackend'
-import * as adminAPI from '../../utils/api/admin-api'
+import * as adminAPI from '../../utils/api/category-api'
 import { NotificationContext } from '../notification-provider/notification-provider'
 
 interface IGroupModifiersForDish {

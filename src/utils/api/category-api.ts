@@ -13,7 +13,7 @@ export const getAdmin = async (token: string, id: string) => {
   }).then(async (res) => await handleResponse(res))
 }
 
-export const getAllAdmins = async (token: string) => {
+export const getAllCategories = async (token: string) => {
   return await fetch(`${BASE_URL}/rest/adminSuperGet`, {
     method: 'GET',
     headers: {
