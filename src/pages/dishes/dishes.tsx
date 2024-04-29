@@ -52,15 +52,12 @@ const Dishes: FC<IMenu> = ({ token, pathRest, t }) => {
   const columns: ColumnsType<TDish> = [
     {
       title: `${t('image')}`,
-      dataIndex: 'logoPath',
-      key: 'logoPath',
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      render: (logoPath) =>
-        logoPath ? (
-          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      dataIndex: 'image',
+      key: 'image',
+      render: (image: string) =>
+        image ? (
           <img
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            src={`${BASE_URL_CDN}/${logoPath}`}
+            src={`${BASE_URL_CDN}/${image}`}
             style={{ width: '100px', height: '100px', objectFit: 'contain' }}
             onError={(e) => {
               e.currentTarget.src = imageNoPhoto
@@ -126,9 +123,7 @@ const Dishes: FC<IMenu> = ({ token, pathRest, t }) => {
         }}
       >
         <div style={{ display: 'block', marginRight: 'auto' }}>
-          <h2 style={{ fontWeight: 600, marginBottom: '0' }}>
-            {t('dishes')}
-          </h2>
+          <h2 style={{ fontWeight: 600, marginBottom: '0' }}>{t('dishes')}</h2>
           <p style={{ marginBottom: '0' }}>{t('your-list-of-dishes')}</p>
         </div>
         <NavLink
