@@ -26,25 +26,25 @@ const Autorization: FC<IAutorization> = ({ setIsLoggedIn, t, setToken }) => {
         .validateToken(tokenDetailsString)
         .then((res) => {
           if (res.message === 'valid') {
-              setIsLoggedIn(true)
-              if (storedInitialRoute) {
-                if (storedInitialRoute === '/') {
-                  history.push('dishes')
-                } else {
-                  history.push(storedInitialRoute)
-                  localStorage.removeItem('initialRoute')
-                }
-              } else {
+            setIsLoggedIn(true)
+            if (storedInitialRoute) {
+              if (storedInitialRoute === '/') {
                 history.push('dishes')
-              }
-            } else {
-              setIsLoggedIn(true)
-              if (storedInitialRoute) {
+              } else {
                 history.push(storedInitialRoute)
                 localStorage.removeItem('initialRoute')
-              } else {
-                history.push('dishes')
               }
+            } else {
+              history.push('dishes')
+            }
+          } else {
+            setIsLoggedIn(true)
+            if (storedInitialRoute) {
+              history.push(storedInitialRoute)
+              localStorage.removeItem('initialRoute')
+            } else {
+              history.push('dishes')
+            }
           }
         })
         .catch((e) => {
@@ -54,6 +54,8 @@ const Autorization: FC<IAutorization> = ({ setIsLoggedIn, t, setToken }) => {
   }, [])
 
   const onFinish = (values: any) => {
+    console.log(values)
+
     autorizationApi
       .autorization(values)
       .then((res) => {
